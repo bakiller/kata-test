@@ -1,6 +1,7 @@
 package kata.spring.test.tennis.models;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -8,12 +9,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSION;
-
 @Component
-@Scope(SCOPE_SESSION)
+@Scope(scopeName = "client")
 public class Game {
-
     private final Map<GameSide, Score> result;
     private GameSide winner;
     private UUID uuid = UUID.randomUUID();
