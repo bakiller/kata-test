@@ -26,6 +26,11 @@ public class WinnigScore implements Score {
         return "0";
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static WinnigScore getInstance() {
         return INSTANCE;
     }

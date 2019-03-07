@@ -1,12 +1,10 @@
 package kata.spring.test.tennis.models;
 
-import org.springframework.web.context.ContextLoader;
-
-import java.util.Objects;
-
+/**
+ * The type Integer score.
+ */
 public class IntegerScore implements Score {
     private Integer score = 0;
-
 
 
     private IntegerScore(Integer score) throws UnsupportedIntegerScoreException {
@@ -17,7 +15,12 @@ public class IntegerScore implements Score {
         }
     }
 
-    public IntegerScore() { }
+    /**
+     * Instantiates a new Integer score.
+     */
+    public IntegerScore() {
+    }
+
     @Override
     public boolean isWinningScore() {
         return false;
