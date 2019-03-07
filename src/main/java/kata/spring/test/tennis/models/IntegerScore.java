@@ -1,22 +1,23 @@
 package kata.spring.test.tennis.models;
 
+import org.springframework.web.context.ContextLoader;
+
+import java.util.Objects;
+
 public class IntegerScore implements Score {
-    private Integer score;
+    private Integer score = 0;
+
+
 
     private IntegerScore(Integer score) throws UnsupportedIntegerScoreException {
+        this();
         this.score = score + 15;
-        if (this.score == 45) {
-            this.score = 40;
-        }
         if (this.score > 40) {
             throw new UnsupportedIntegerScoreException();
         }
     }
 
-    public IntegerScore() {
-        this.score = 0;
-    }
-
+    public IntegerScore() { }
     @Override
     public boolean isWinningScore() {
         return false;
@@ -27,7 +28,7 @@ public class IntegerScore implements Score {
         try {
             return new IntegerScore(this.score);
         } catch (UnsupportedIntegerScoreException e) {
-            return new WinnigScore();
+            return new DeuceScore();
         }
     }
 

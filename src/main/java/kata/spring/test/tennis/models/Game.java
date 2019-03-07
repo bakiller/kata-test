@@ -4,10 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 @Scope(scopeName = "client")
@@ -22,6 +19,8 @@ public class Game {
 
     public Game() {
         result = new HashMap<>();
+        getFirstPlayerScore();
+        getSecondPlayerScore();
     }
 
     public Score getFirstPlayerScore() {
@@ -53,6 +52,13 @@ public class Game {
 
     private Score getPlayerScore(GameSide selectedSide) {
         return result.computeIfAbsent(selectedSide, side -> Score.initialScore());
+    }
+
+    public Score getOtherScore(Score score) {
+        if (!Objects.equals(score, getFirstPlayerScore()) && !Objects.equals(score, getSecondPlayerScore())) {
+            throw new IllegalArgumentException("incorrect score");
+        }
+        return getFirstPlayerScore() == score ? getSecondPlayerScore() : getFirstPlayerScore();
     }
 
     public GameSide getWinner() {

@@ -5,6 +5,12 @@ package kata.spring.test.tennis.models;
  */
 public class WinnigScore implements Score {
 
+    private static final WinnigScore INSTANCE = new WinnigScore();
+
+    private WinnigScore() {
+
+    }
+
     @Override
     public boolean isWinningScore() {
         return true;
@@ -18,5 +24,9 @@ public class WinnigScore implements Score {
     @Override
     public String getDesignation() {
         return "0";
+    }
+
+    public static WinnigScore getInstance() {
+        return INSTANCE;
     }
 }

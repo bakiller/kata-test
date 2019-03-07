@@ -40,4 +40,15 @@ public class GameController {
     public Game addPoint(@PathVariable("side") Game.GameSide side) {
         return this.gameService.addPoint(side);
     }
+
+
+    /**
+     * reset the game for this client
+     *
+     */
+    @PostMapping("reset")
+    public Game resetGame() {
+        this.gameService.resetGame();
+        return this.gameService.getGame();
+    }
 }

@@ -1,7 +1,9 @@
 package kata.spring.test.tennis.models;
 
+import kata.spring.test.tennis.config.ApplicationContextHolder;
+import kata.spring.test.tennis.config.ClientBeanFactoryProcessor;
+
 import java.util.Optional;
-import java.util.function.Function;
 
 public interface Score {
 
@@ -15,5 +17,9 @@ public interface Score {
 
     static Score initialScore() {
         return new IntegerScore();
+    }
+
+    default Game currentGame() {
+        return ApplicationContextHolder.getApplicationContext().getBean(Game.class);
     }
 }

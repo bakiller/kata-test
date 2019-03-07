@@ -1,8 +1,12 @@
 package kata.spring.test.tennis.service;
 
+import kata.spring.test.tennis.config.ApplicationContextHolder;
+import kata.spring.test.tennis.config.ClientBeanFactoryProcessor;
 import kata.spring.test.tennis.models.Game;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * The Game service.
@@ -30,5 +34,12 @@ public abstract class GameService {
         Game game = getGame();
         game.incrementPlayerScore(side);
         return game;
+    }
+
+    public void resetGame() {
+        ApplicationContextHolder
+                .getApplicationContext()
+                .getBeansOfType(ClientBeanFactoryProcessor.class)
+        .values().forEach(clientBeanFactoryProcessor -> clientBeanFactoryProcessor.getScope().remove());
     }
 }

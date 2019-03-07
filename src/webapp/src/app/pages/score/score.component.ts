@@ -22,5 +22,11 @@ export class ScoreComponent implements OnInit {
       return this.game = value;
     });
   }
+  reset() {
+    this.gameService.reset().subscribe(value => {
+      console.log(value);
+      return this.game = value;
+    });
+  }
 
 }

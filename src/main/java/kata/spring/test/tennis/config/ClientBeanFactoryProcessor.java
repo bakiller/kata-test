@@ -6,9 +6,15 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 public class ClientBeanFactoryProcessor implements BeanFactoryPostProcessor {
 
+    private ClientScope scope;
+
+    public ClientScope getScope() {
+        return scope;
+    }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        beanFactory.registerScope("client", new ClientScope());
+        this.scope = new ClientScope();
+        beanFactory.registerScope("client", this.scope);
     }
 }

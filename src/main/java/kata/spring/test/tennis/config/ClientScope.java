@@ -31,6 +31,10 @@ public class ClientScope implements Scope {
         return scopedObjects.remove(name);
     }
 
+    public void remove() {
+        getId().ifPresent(scopedObjects::remove);
+    }
+
     @Override
     public void registerDestructionCallback(String name, Runnable callback) {
         destructionCallbacks.put(name, callback);

@@ -20,4 +20,8 @@ export class GameService {
     return this.httpClient.post<Game>(`${environment.baseUrl}game/${side}`, null);
   }
 
+  public reset(): Observable<Game> {
+    return this.httpClient.post<Game>(`${environment.baseUrl}game/reset`, null);
+  }
+
 }
