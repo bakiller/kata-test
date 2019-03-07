@@ -6,15 +6,22 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 public class ClientBeanFactoryProcessor implements BeanFactoryPostProcessor {
 
-    private ClientScope scope;
+    private GameScope gameScope;
+    private SetScope setScope;
 
-    public ClientScope getScope() {
-        return scope;
+    public GameScope getGameScope() {
+        return gameScope;
+    }
+
+    public SetScope getSetScope() {
+        return setScope;
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        this.scope = new ClientScope();
-        beanFactory.registerScope("client", this.scope);
+        this.gameScope = new GameScope();
+        this.setScope = new SetScope();
+        beanFactory.registerScope("game", this.gameScope);
+        beanFactory.registerScope("set", this.setScope);
     }
 }

@@ -9,7 +9,7 @@ import java.util.*;
  * The Game.
  */
 @Component
-@Scope(scopeName = "client")
+@Scope(scopeName = "game")
 public class Game {
     private final Map<GameSide, Score> result;
     private GameSide winner;
