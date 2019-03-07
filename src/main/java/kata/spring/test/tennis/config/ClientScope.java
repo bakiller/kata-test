@@ -1,16 +1,16 @@
 package kata.spring.test.tennis.config;
 
-import kata.spring.test.tennis.models.Game;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
-public class ClientScope implements Scope {
+public abstract class ClientScope implements Scope {
 
     private Map<String, Object> scopedObjects
             = Collections.synchronizedMap(new HashMap<>());
@@ -49,11 +49,10 @@ public class ClientScope implements Scope {
         return Optional.ofNullable(
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                 .getRequest()
-                .getHeader("game-id"));
+                .getHeader(getHeaderName()));
     }
 
-
-
+    protected abstract String getHeaderName();
     @Override
     public String getConversationId() {
         return "client";
