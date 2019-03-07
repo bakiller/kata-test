@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {ScoreComponent} from "./score/score.component";
+import {HttpClientModule} from "@angular/common/http";
 
 
 const routes: Routes = [{path: '', component: ScoreComponent}];
@@ -9,4 +10,5 @@ const routes: Routes = [{path: '', component: ScoreComponent}];
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PagesRouterModule { }
+export class PagesRouterModule {
+}

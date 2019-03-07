@@ -1,1 +1,32 @@
-Score works!
+
+
+
+<ng-container *ngIf="game">
+  <ng-container *ngIf="!game.winner; else game_finished">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Current score</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-actions>
+        <button mat-button (click)="score('FIRST_PLAYER')">{{game.firstPlayerScore.designation}}</button>
+        <button mat-button (click)="score('SECOND_PLAYER')">{{game.secondPlayerScore.designation}}</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+  <ng-template #game_finished>
+    <mat-card>
+      <mat-card-header>
+        Game is finished
+      </mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-card-title *ngIf="game.winner == 'FIRST_PLAYER'">Player 1 wins</mat-card-title>
+        <mat-card-title *ngIf="game.winner == 'SECOND_PLAYER'">Player 2 wins</mat-card-title>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
+</ng-container>
+
